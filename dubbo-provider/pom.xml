@@ -1,0 +1,446 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.dubbo.api</groupId>
+		<artifactId>dubbo-parent-</artifactId>
+		<version>1.5.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>dubbo-provider</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>dubbo-provider</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<service.version>3.0.0</service.version>
+		<dubbo.timeout>1000000</dubbo.timeout>
+	</properties>
+
+	<dependencies>
+		<!-- dubbo -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dubbo.api</groupId>
+			<artifactId>dubbo-api</artifactId>
+			<version>3.0.0-SNAPSHOT</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${version-spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${version-spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${version-spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${version-spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${version-spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${version-spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.spy</groupId>
+			<artifactId>spymemcached</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.11.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.netty</groupId>
+			<artifactId>netty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.101tec</groupId>
+		    <artifactId>zkclient</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.zookeeper</groupId>
+		    <artifactId>zookeeper</artifactId>
+		    <version>3.4.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.esotericsoftware.kryo</groupId>
+			<artifactId>kryo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.javakaffee</groupId>
+			<artifactId>kryo-serializers</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+	</dependencies>
+
+	<scm>
+		<connection>scm:svn:https://192.168.37.1:444/svn/Horizon/trunk/com.horizon.api/service-mall</connection>
+		<developerConnection>scm:svn:https://192.168.37.1:444/svn/Horizon/trunk/com.horizon.api/service-mall</developerConnection>
+		<url>https://192.168.37.1:444/svn/Horizon/trunk/com.horizon.api/service-mall</url>
+	</scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>com/**</include>
+					</includes>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.horizon.api.mall.apartment.deploy.Start</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>make-binary-pacakge</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<appendAssemblyId>false</appendAssemblyId>
+							<!-- <finalName>${project.build.finalName}-${maven.build.timestamp}</finalName> -->
+							<finalName>service_mall_apartment</finalName>
+							<descriptors>
+								<descriptor>src/main/resources/bin-assemble-descriptor.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagBase>https://192.168.37.1:444/svn/Horizon/tags/releases/com.horizon.api/service-mall</tagBase>
+					<branchBase>https://192.168.37.1:444/svn/Horizon/branches/releases/com.horizon.api/service-mall</branchBase>
+					<tagNameFormat>${project.version}</tagNameFormat>
+					<useEditMode>true</useEditMode>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.18</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<xmlOutput>true</xmlOutput>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>dashboard-maven-plugin</artifactId>
+				<version>1.0.0-beta-1</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<jdbc.mall_apartment.driverClass>com.mysql.jdbc.Driver</jdbc.mall_apartment.driverClass>
+				<!-- mall_apartment 读库 -->
+				<jdbc.mall_apartment.reader.url><![CDATA[jdbc:mysql://192.168.37.11:3306/mall_apartment?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;connectTimeout=2000&amp;socketTimeout=20000&amp;zeroDateTimeBehavior=convertToNull]]></jdbc.mall_apartment.reader.url>
+				<jdbc.mall_apartment.reader.username>testUser</jdbc.mall_apartment.reader.username>
+				<jdbc.mall_apartment.reader.password>test1234</jdbc.mall_apartment.reader.password>
+
+				<!-- mall_apartment 写库 -->
+				<jdbc.mall_apartment.write.url><![CDATA[jdbc:mysql://192.168.37.11:3306/mall_apartment?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;connectTimeout=2000&amp;socketTimeout=20000&amp;zeroDateTimeBehavior=convertToNull]]></jdbc.mall_apartment.write.url>
+				<jdbc.mall_apartment.write.username>testUser</jdbc.mall_apartment.write.username>
+				<jdbc.mall_apartment.write.password>test1234</jdbc.mall_apartment.write.password>
+
+				<!-- 日志 -->
+				<log4j.root.logger>info,DEBUG,stdout,DebugLogFile,CONSOLE</log4j.root.logger>
+
+				<!-- dubbo -->
+				<dubbo.application.name>service-mall-apt</dubbo.application.name>
+				<dubbo.protocol.name>dubbo</dubbo.protocol.name>
+				<dubbo.protocol.port>20512</dubbo.protocol.port>
+				<dubbo.registry.protocol>zookeeper</dubbo.registry.protocol>
+				<dubbo.registry.address>192.168.37.83:2181,192.168.37.84:2181</dubbo.registry.address>
+
+				<!-- memcached配置 -->
+				<horizon.memcached.address>192.168.37.12:11211</horizon.memcached.address>
+
+				<!-- 上传/下载文件请求路径 -->
+				<file.download.address>http://file.public.a:8081/viewResourceAction/</file.download.address>
+				<file.upload.address>http://file.public.a:8081/upload/servlet/upload</file.upload.address>
+
+				<!-- 获取雅虎汇率请求路径 -->
+				<yahoo.finance.rate>http://www.51offer.com/apichannl/queryExchange.html?callBack=?</yahoo.finance.rate>
+
+				<!-- UI domain -->
+				<apartment.url.domain>test.51offer.com</apartment.url.domain>
+
+				<!-- 获取搜索结果请求路径 -->
+				<apartment.search.url>http://search.test.51offer.com/auction</apartment.search.url>
+
+				<!-- 获取51offer用户信息 -->
+				<query.51offer.user.info>http://www.test.51offer.com/apichannl/getUserInfo.html</query.51offer.user.info>
+
+				<!-- 搜索建库数据文件存放目录 -->
+				<search.data.push.location>/usr/local/apps/search/data/</search.data.push.location>
+
+				<!-- 前台环境URL -->
+				<apartment.front.url>http://mall.test.51offer.com/apt</apartment.front.url>
+
+				<!-- Mq TCP链接 -->
+				<mq.address.url>tcp://192.168.37.12:61616,admin,admin</mq.address.url>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<maven.test.skip>false</maven.test.skip>
+				<jdbc.mall_apartment.driverClass>com.mysql.jdbc.Driver</jdbc.mall_apartment.driverClass>
+				<!-- mall_apartment 读库 -->
+				<jdbc.mall_apartment.reader.url><![CDATA[jdbc:mysql://192.168.37.11:3306/mall_apartment?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;connectTimeout=2000&amp;socketTimeout=20000&amp;zeroDateTimeBehavior=convertToNull]]></jdbc.mall_apartment.reader.url>
+				<jdbc.mall_apartment.reader.username>testUser</jdbc.mall_apartment.reader.username>
+				<jdbc.mall_apartment.reader.password>test1234</jdbc.mall_apartment.reader.password>
+
+				<!-- mall_apartment 写库 -->
+				<jdbc.mall_apartment.write.url><![CDATA[jdbc:mysql://192.168.37.11:3306/mall_apartment?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;connectTimeout=2000&amp;socketTimeout=20000&amp;zeroDateTimeBehavior=convertToNull]]></jdbc.mall_apartment.write.url>
+				<jdbc.mall_apartment.write.username>testUser</jdbc.mall_apartment.write.username>
+				<jdbc.mall_apartment.write.password>test1234</jdbc.mall_apartment.write.password>
+
+				<!-- 日志 -->
+				<log4j.root.logger>info,DEBUG,stdout,DebugLogFile,CONSOLE</log4j.root.logger>
+
+				<!-- dubbo -->
+				<dubbo.application.name>service-mall-apt</dubbo.application.name>
+				<dubbo.protocol.name>dubbo</dubbo.protocol.name>
+				<dubbo.protocol.port>20514</dubbo.protocol.port>
+				<dubbo.registry.protocol>zookeeper</dubbo.registry.protocol>
+				<dubbo.registry.address>192.168.37.83:2181,192.168.37.84:2181</dubbo.registry.address>
+
+				<!-- memcached配置 -->
+				<horizon.memcached.address>192.168.37.12:11211</horizon.memcached.address>
+
+				<!-- 上传/下载文件请求路径 -->
+				<file.download.address>http://file.test.51offer.com/viewResourceAction/</file.download.address>
+				<file.upload.address>http://file.test.51offer.com/upload/servlet/upload</file.upload.address>
+
+				<!-- 获取雅虎汇率请求路径 -->
+				<yahoo.finance.rate>http://www.51offer.com/apichannl/queryExchange.html?callBack=?</yahoo.finance.rate>
+
+				<!-- UI domain -->
+				<apartment.url.domain>test.51offer.com</apartment.url.domain>
+
+				<!-- 获取搜索结果请求路径 -->
+				<apartment.search.url>http://search.test.51offer.com/auction</apartment.search.url>
+
+				<!-- 前台环境URL -->
+				<apartment.front.url>http://mall.test.51offer.com/apt</apartment.front.url>
+
+				<!-- 获取51offer用户信息 -->
+				<query.51offer.user.info>http://www.test.51offer.com/apichannl/getUserInfo.html</query.51offer.user.info>
+
+				<!-- Mq TCP链接 -->
+				<mq.address.url>tcp://192.168.37.12:61616,admin,admin</mq.address.url>
+			</properties>
+		</profile>
+		<profile>
+			<id>pro</id>
+			<properties>
+				<jdbc.mall_apartment.driverClass>com.mysql.jdbc.Driver</jdbc.mall_apartment.driverClass>
+				<!-- mall_apartment 读库 -->
+				<jdbc.mall_apartment.reader.url><![CDATA[jdbc:mysql://db.apt.m:3307/mall_apartment?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;connectTimeout=2000&amp;socketTimeout=20000&amp;zeroDateTimeBehavior=convertToNull]]></jdbc.mall_apartment.reader.url>
+				<jdbc.mall_apartment.reader.username>u_mall</jdbc.mall_apartment.reader.username>
+				<jdbc.mall_apartment.reader.password>mALl3c2Bb7A2hr61B1q</jdbc.mall_apartment.reader.password>
+
+				<!-- mall_apartment 写库 -->
+				<jdbc.mall_apartment.write.url><![CDATA[jdbc:mysql://db.apt.m:3307/mall_apartment?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;connectTimeout=2000&amp;socketTimeout=20000&amp;zeroDateTimeBehavior=convertToNull]]></jdbc.mall_apartment.write.url>
+				<jdbc.mall_apartment.write.username>u_mall</jdbc.mall_apartment.write.username>
+				<jdbc.mall_apartment.write.password>mALl3c2Bb7A2hr61B1q</jdbc.mall_apartment.write.password>
+
+				<!-- 日志 -->
+				<log4j.root.logger>error,stdout,ErrrorLogFile,CONSOLE</log4j.root.logger>
+
+				<!-- dubbo -->
+				<dubbo.application.name>service-mall-apt</dubbo.application.name>
+				<dubbo.protocol.name>dubbo</dubbo.protocol.name>
+				<dubbo.protocol.port>20520</dubbo.protocol.port>
+				<dubbo.registry.protocol>zookeeper</dubbo.registry.protocol>
+				<dubbo.registry.address>zk.public.a:2181,zk.public.b:2181</dubbo.registry.address>
+
+				<!-- memcached配置 -->
+				<horizon.memcached.address>mem.public.b:12000</horizon.memcached.address>
+
+				<!-- 上传/下载文件请求路径 -->
+				<file.download.address>http://download.51offer.com/viewResourceAction/</file.download.address>
+				<file.upload.address>http://file.public.a:8081/upload/servlet/upload</file.upload.address>
+
+				<!-- 获取雅虎汇率请求路径 -->
+				<yahoo.finance.rate>http://51offer.web.front:8082/apichannl/queryExchange.html?callBack=?</yahoo.finance.rate>
+
+				<!-- UI domain -->
+				<apartment.url.domain>51offer.com</apartment.url.domain>
+
+				<!-- 获取搜索结果请求路径 -->
+				<apartment.search.url>http://search.51offer.a:8887/auction</apartment.search.url>
+
+				<!-- 公寓前台链接 -->
+				<apartment.front.url>http://mall.51offer.com/apt</apartment.front.url>
+
+				<!-- 获取51offer用户信息 -->
+				<query.51offer.user.info>http://51offer.web.front:8082/apichannl/getUserInfo.html</query.51offer.user.info>
+
+				<!-- Mq TCP链接 -->
+				<mq.address.url>tcp://mq.public.a:61616,admin,pwl2007818</mq.address.url>
+			</properties>
+		</profile>
+	</profiles>
+</project>

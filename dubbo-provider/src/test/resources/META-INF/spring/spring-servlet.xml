@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		
+	<!-- 自动扫描bean，把作了注解的类转换为bean -->  
+	<context:component-scan base-package="com.horizon.api.mall.apartment">
+	</context:component-scan>
+	
+	<bean id="propertiesReader" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:second.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<context:annotation-config />
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+    <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->  
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+    
+    <!-- 后表用户表Service -->
+    <bean id="apAdminUserService" class="com.horizon.api.mall.apartment.service.impl.ApAdminUserServiceImpl" />
+    <bean id="apOrderService" class="com.horizon.api.mall.apartment.service.impl.ApOrderServiceImpl" />
+    <bean id="apFileService" class="com.horizon.api.mall.apartment.service.impl.ApFileServiceImpl" />
+    <bean id="apApartmentService" class="com.horizon.api.mall.apartment.service.impl.ApApartmentServiceImpl" />
+    <bean id = "apSupplierService" class="com.horizon.api.mall.apartment.service.impl.ApSupplierServiceImpl"/>
+    <bean id="apSysDicService" class="com.horizon.api.mall.apartment.service.impl.ApSysDicServiceImpl"/>
+    <bean id="apCityService" class="com.horizon.api.mall.apartment.service.impl.ApCityServiceImpl"/>
+    <bean id="apSendSmsService" class="com.horizon.api.mall.apartment.service.impl.ApSendSmsServiceImpl"/>
+    <bean id="apApartmentHouseService" class="com.horizon.api.mall.apartment.service.impl.ApApartmentHouseServiceImpl" />
+    <bean id="synDataService" class="com.horizon.api.mall.apartment.service.impl.SynDataServiceImpl"/>
+    <bean id="searchService" class="com.horizon.api.mall.apartment.service.impl.SearchServiceImpl"/>
+    <bean id="apBlackListService" class="com.horizon.api.mall.apartment.service.impl.ApBlackListServiceImpl"/>
+    <bean id="apOrderSendGiftService" class="com.horizon.api.mall.apartment.service.impl.ApOrderSendGiftServiceImpl"/>
+    <bean id="apActivityService" class="com.horizon.api.mall.apartment.service.impl.ApActivityServiceImpl"/>
+    <bean id="apOrderGiftService" class="com.horizon.api.mall.apartment.service.impl.ApOrderGiftServiceImpl"/>
+    <bean id="apChannelService" class="com.horizon.api.mall.apartment.service.impl.ApChannelServiceImpl"/>
+    <bean id="apSchoolService" class="com.horizon.api.mall.apartment.service.impl.ApSchoolServiceImpl"/>
+    <bean id="apBookService" class="com.horizon.api.mall.apartment.service.impl.ApBookServiceImpl"/>
+    <bean id="apEarlyBirdService" class="com.horizon.api.mall.apartment.service.impl.ApEarlyBirdServiceImpl"/>
+    <bean id="dataService" class="com.horizon.api.mall.apartment.service.impl.DataServiceImpl"/>
+    <bean id="apCountryService" class="com.horizon.api.mall.apartment.service.impl.ApCountryServiceImpl"/>
+</beans>

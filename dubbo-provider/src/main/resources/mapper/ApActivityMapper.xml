@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="api.mall.apartment.ApActivity">
+	<resultMap id="BaseResultMap" type="com.horizon.api.mall.apartment.entity.ApActivity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="activity_code" property="activityCode" jdbcType="VARCHAR" />
+		<result column="activity_create_time" property="activityCreateTime" jdbcType="TIMESTAMP" />
+		<result column="activity_end_time" property="activityEndTime" jdbcType="TIMESTAMP" />
+		<result column="activity_create_user" property="activityCreateUser" jdbcType="INTEGER" />
+		<result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+		<result column="activity_start_time" property="activityStartTime" jdbcType="TIMESTAMP" />
+		<result column="activity_status" property="activityStatus" jdbcType="INTEGER" />
+		<result column="activity_update_time" property="activityUpdateTime" jdbcType="TIMESTAMP" />
+		<result column="activity_update_user" property="activityUpdateUser" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, activity_code ,activity_create_time, activity_end_time activity_create_user, activity_name,
+		 activity_start_time, activity_status, activity_update_time, activity_update_user
+	</sql>
+	
+	<!-- 查询有效的活动 -->
+	<select id="queryApActivity" resultMap="BaseResultMap" parameterType="com.horizon.api.mall.apartment.entity.ApActivity" >
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM ap_activity A
+		WHERE 1=1
+		<if test="@com.horizon.api.mall.common.util.HorizonOgnl@isNotEmpty(activityCode)">
+				<![CDATA[ AND A.activity_code = #{activityCode}]]>
+		</if>
+		<if test="@com.horizon.api.mall.common.util.HorizonOgnl@isNotEmpty(activityStatus)">
+			<![CDATA[ AND A.activity_status = #{activityStatus}]]>
+		</if>
+	</select>
+	
+	<!-- 自动更新活动状态有效变为失效 -->
+	<update id="autoUpdateAitivityStatusEffect2Invalid" parameterType="Map" >
+		<![CDATA[
+			 UPDATE ap_activity T SET T.activity_status = 
+			(IF(NOW()> T.activity_end_time, #{invalid},#{effect}))
+		]]>
+	</update>
+</mapper>

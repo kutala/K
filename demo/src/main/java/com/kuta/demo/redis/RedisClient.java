@@ -10,9 +10,9 @@ import redis.clients.jedis.Jedis;
 public class RedisClient {
     
     //redis 主机IP
-    public static final String HOST = "192.168.37.110";
+    public static final String HOST = "120.76.236.146";
     //redis 主机端口
-    public static final Integer PORT = 6379;
+    public static final Integer PORT = 2181;
     
     public static Jedis jedis;
     

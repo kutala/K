@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="${dubbo.application.name}" owner="fei" organization="com.horizon"/>
+
+	<dubbo:provider serialization="kryo" codec="dubbo" server="netty" client="netty" threadpool="cached"
+		connections="1" loadbalance="consistenthash" cluster="failfast" delay="-1" timeout="${dubbo.timeout}" />
+		 
+    <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}"/>
+	
+    <dubbo:monitor protocol="registry"/>
+
+    <dubbo:protocol name="${dubbo.protocol.name}" serialization="kryo" port="${dubbo.protocol.port}"/>
+
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApAdminUserService" ref="apAdminUserService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApOrderService" ref="apOrderService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApFileService" ref="apFileService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApApartmentService" ref="apApartmentService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApSupplierService" ref="apSupplierService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApSysDicService" ref="apSysDicService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApCityService" ref="apCityService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApSendSmsService" ref="apSendSmsService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApApartmentHouseService" ref="apApartmentHouseService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.SynDataService" ref="synDataService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.SearchService" ref="searchService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApBlackListService" ref="apBlackListService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApOrderSendGiftService" ref="apOrderSendGiftService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApActivityService" ref="apActivityService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApOrderGiftService" ref="apOrderGiftService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApChannelService" ref="apChannelService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApSchoolService" ref="apSchoolService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApBookService" ref="apBookService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApEarlyBirdService" ref="apEarlyBirdService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.DataService" ref="dataService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+	
+	<dubbo:service interface="com.horizon.api.mall.apartment.service.ApCountryService" ref="apCountryService"  protocol="dubbo" delay="-1" version="${service.version}"/>
+</beans>
