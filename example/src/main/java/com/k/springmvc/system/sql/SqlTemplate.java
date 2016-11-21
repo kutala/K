@@ -17,10 +17,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.bawo.oss.sql.ISql;
-import com.bawo.oss.sql.SqlConstants;
-import com.bawo.oss.sql.TableInfo;
-
 public class SqlTemplate implements ApplicationContextAware, InitializingBean {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SqlTemplate.class);
@@ -102,6 +98,7 @@ public class SqlTemplate implements ApplicationContextAware, InitializingBean {
 		return sqlSessionTemplate.update(sql, parameter);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T, V> V selectOne(final TableInfo tableInfo, final Map<String, T> parameter) {
 		return selectOne(SqlTemplateSql.SELECT, (Map<String, T>) constructNewParameter(tableInfo, parameter));
 	}
@@ -117,6 +114,7 @@ public class SqlTemplate implements ApplicationContextAware, InitializingBean {
 		return v;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T, V> List<V> selectList(final TableInfo tableInfo, final Map<String, T> parameter) {
 		return selectList(SqlTemplateSql.SELECT, (Map<String, T>) constructNewParameter(tableInfo, parameter));
 	}

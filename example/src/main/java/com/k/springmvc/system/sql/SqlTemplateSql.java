@@ -1,7 +1,5 @@
 package com.k.springmvc.system.sql;
 
-import com.bawo.oss.sql.ISql;
-
 public enum SqlTemplateSql implements ISql {
 
 	SELECT_LAST_INSERT_ID("sqlTemplate.selectLastInsertId"),

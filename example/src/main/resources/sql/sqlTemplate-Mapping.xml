@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.3//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="sqlTemplate">
+	<select id="selectFoundRows" resultType="int">
+		SELECT FOUND_ROWS()
+	</select>
+
+	<select id="selectLastInsertId" resultType="int">
+		SELECT
+		LAST_INSERT_ID()
+	</select>
+
+	<sql id="where">
+		<where>
+			<if test="_columnParameters_ != null">
+				<foreach collection="_columnParameters_" index="_columnName_"
+					item="_columnValue_" separator="AND">
+					${_columnName_} = #{_columnValue_}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+
+	<insert id="insert" parameterType="hashmap">
+		INSERT INTO ${_tableName_}
+		(
+		<trim suffixOverrides=",">
+			<foreach collection="_columnParameters_" index="_columnName_"
+				item="_columnValue_" separator=",">
+				${_columnName_}
+			</foreach>
+		</trim>
+		)
+		VALUES (
+		<trim suffixOverrides=",">
+			<foreach collection="_columnParameters_" index="_columnName_"
+				item="_columnValue_" separator=",">
+				#{_columnValue_}
+			</foreach>
+		</trim>
+		)
+	</insert>
+
+	<insert id="insertList" parameterType="hashmap">
+		INSERT INTO ${_tableName_}
+		(
+		<trim suffixOverrides=",">
+			<foreach collection="_columnNameParameters_" index="index"
+				item="_columnName_" separator=",">
+				${_columnName_}
+			</foreach>
+		</trim>
+		)
+		VALUES
+		<trim suffixOverrides=",">
+			<foreach collection="_columnValueParameters_" index="index"
+				item="_rowValues_" separator=",">
+				(
+				<trim suffixOverrides=",">
+					<foreach collection="_rowValues_" index="index2" item="value"
+						separator=",">
+						#{value}
+					</foreach>
+				</trim>
+				)
+			</foreach>
+		</trim>
+	</insert>
+
+	<delete id="delete" parameterType="hashmap">
+		DELETE FROM ${_tableName_}
+		<include refid="where" />
+	</delete>
+
+	<update id="update" parameterType="hashmap">
+		UPDATE ${_tableName_}
+		<set>
+			<trim suffixOverrides=",">
+				<foreach collection="_updateColumnParameters_" index="_columnName_"
+					item="_columnValue_" separator=",">
+					${_columnName_} = #{_columnValue_}
+				</foreach>
+			</trim>
+		</set>
+		<include refid="where" />
+	</update>
+
+	<select id="select" parameterType="hashmap" resultType="hashmap">
+		SELECT
+		<if test="_from_ != null and _count_ != null">
+			SQL_CALC_FOUND_ROWS
+		</if>
+		*
+		FROM
+		${_tableName_}
+		<include refid="where" />
+		<if test="_from_ != null and _count_ != null">
+			LIMIT #{_from_},#{_count_}
+		</if>
+	</select>
+
+</mapper>
