@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.3//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="general">
+	<select id="queryTest" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM oss_agentDetail
+	</select>
+</mapper>

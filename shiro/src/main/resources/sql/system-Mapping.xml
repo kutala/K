@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.3//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="system">
+	<select id="queryPermissionNameList" parameterType="hashmap" resultType="list">
+		SELECT
+			accessName
+		FROM
+			oss_permission
+		WHERE
+			permissionId IN (
+				SELECT DISTINCT
+					(permissionId)
+				FROM
+					oss_accessProfilePermissionXref appXref,
+					oss_credentialsAccessProfileXref caXref
+				WHERE
+					appXref.accessProfileId = caXref.accessProfileId
+				AND caXref.credentialsId = #{credentialsId}
+			);
+	</select>
+
+	<select id="queryRoleNameList" parameterType="hashmap" resultType="list">
+		SELECT 
+			DISTINCT(displayName)
+		FROM
+			oss_accessProfile
+		WHERE
+			accessProfileId IN (
+				SELECT DISTINCT
+					(accessProfileId)
+				FROM
+					oss_credentials cred,
+					oss_credentialsAccessProfileXref credApX
+				WHERE
+					cred.credentialsId = credApX.credentialsId
+				AND cred.credentialsId = #{credentialsId}
+			)
+	</select>
+</mapper>
